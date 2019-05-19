@@ -1,10 +1,84 @@
 import pq
 
-def dijkstra(graph, startNode, endNode):
-    queue = pq.PriorityQueue
-    queue.insert((startNode, 0))
-    print(graph[startNode])
+class Node():
+    def __init__(self, label):
+        self.label = label
+        self.cost = float('inf')
+        self.prev = None
 
+
+def dijkstra(graph, startNode, endNode):
+    explored = []
+    queue = pq.PriorityQueue()
+    startNode = Node(startNode)
+    startNode.cost=0
+    queue.insert(startNode)
+
+    x = 0
+    while len(queue) > 0:
+        #Test code
+        #if x == 3:
+        #    break
+        #Test code
+        # pop minimum cost from queue as current node
+        currentNode = queue.removeMax()
+        explored.append(currentNode)
+        # if current node is goal node return path and cost
+        if currentNode.label == endNode:
+            #shows every node visited
+            """
+            print()
+            print("explored list")
+            for i in range(len(explored)):
+                print("node:",explored[i].label, "prev:",explored[i].prev ,"Cost:",explored[i].cost)
+            """
+            path=[]
+            previousPath = explored[-1].prev
+            path.append(explored[-1])
+            #Iterate through explored nodes and piece together the path from  the goal node to start node
+            for i in range(len(explored)-1,-1,-1):
+                if explored[i].label == previousPath:
+                    path.append(explored[i])
+                    previousPath = explored[i].prev
+            #print path
+            """
+            print()
+            print("path")
+            for j in range(len(path)):
+                print("node:",path[j].label, "prev:",path[j].prev ,"Cost:",path[j].cost)
+            """
+
+            return explored[-1].cost, path
+        #print()
+        #print("current node:",currentNode.label, "prev:",currentNode.prev ,"Cost:",currentNode.cost)
+        # check if node connects to anything
+        try:
+            length = len(graph[currentNode.label][0])
+        except:
+            break
+        # iterate through all children nodes
+        for i in range(length):
+            #  check if new Node is already in the queue
+            ind = queue.lookUp(graph[currentNode.label][0][i])
+            if ind != False:
+                newWeight = currentNode.cost + graph[currentNode.label][1][i]
+                previousWeight = queue.items[ind].cost
+                # if the current cost is smaller than the cost of the node, update it
+                if newWeight < previousWeight:
+                    queue.items[ind].cost = newWeight
+                    queue.items[ind].prev = currentNode.label
+            # if the node isnt in the queue yet, add it in
+            else:
+                newNode = Node(graph[currentNode.label][0][i])
+                newNode.cost = currentNode.cost + graph[currentNode.label][1][i]
+                newNode.prev = currentNode.label
+                queue.insert(newNode)
+        #print("Nodes available:")
+        #for i in range(1,len(queue)+1):
+            #print("node:",queue.items[i].label, "prev:",queue.items[i].prev ,"Cost:",queue.items[i].cost)
+        x+=1
+
+    return "not found"
 #create a data structure that refelects previous node and cost
 # change pq to reflect assignment 2
 """

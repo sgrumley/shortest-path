@@ -1,3 +1,5 @@
+import NodeClass as d
+
 class PriorityQueue(object):
     def __init__(self):
         self.items = [0]
@@ -9,7 +11,7 @@ class PriorityQueue(object):
     def upHeap(self):
         i = len(self)
         while i // 2 > 0:
-            if self.items[i] > self.items[i // 2]:
+            if self.items[i].cost < self.items[i // 2].cost:
                 self.items[i // 2], self.items[i] = self.items[i], self.items[i // 2]
             i = i // 2
 
@@ -21,7 +23,7 @@ class PriorityQueue(object):
     def downHeap(self, i):
         while i * 2 <= len(self):
             mc = self.min_child(i)
-            if self.items[i] < self.items[mc]:
+            if self.items[i].cost > self.items[mc].cost:
                 self.items[i], self.items[mc] = self.items[mc], self.items[i]
             i = mc
 
@@ -29,40 +31,49 @@ class PriorityQueue(object):
     def min_child(self, i ):
         if i * 2 + 1 > len(self):
             return i * 2
-        if self.items[i * 2] > self.items[i * 2 + 1]:
+        if self.items[i * 2].cost < self.items[i * 2 + 1].cost:
             return i * 2
         return i * 2 + 1
 
     def removeMax(self):
         if len(self) == 0:
-            return ("No items left to remove")
-        max = self.items[1]
+            return (0,0)
+        min = self.items[1]
         self.items[1] = self.items[len(self)]
         self.items.pop()
         self.downHeap(1)
-        return max
+        return min
 
     def peek(self):
         return self.items[1]
 
-    def heapify(self):
+    def lookUp(self, value):
+        for i in range(1,len(self.items)):
+            if self.items[i].label == value:
+                return i
+        return False
+
+    def heapify(self, person):
         i = len(self.items)
         while i > 0:
-            self.downHeap(i)
+            self.downHeap(i,person)
             i = i - 1
-
 """
-pq = PriorityQueue()
-pq.insert("Sam")
-pq.insert("Jesse")
-pq.insert("Adam")
-pq.insert("Lucy")
-pq.insert("Jack")
-print(pq.removeMax())
-print(pq.removeMax())
-print(pq.removeMax())
-print(pq.removeMax())
-print(pq.removeMax())
-print(pq.removeMax())
-print(pq.removeMax())
+p = PriorityQueue()
+test = d.Node('C')
+test.cost = 2
+p.insert(test)
+test = d.Node('D')
+test.cost = 3
+p.insert(test)
+test = d.Node('E')
+test.cost = 4
+p.insert(test)
+test = d.Node('F')
+test.cost = 5
+p.insert(test)
+
+for i in range(4):
+    print(p.removeMax().printNode())
+    print()
 """
