@@ -8,7 +8,7 @@ class Node():
 
 
 def dijkstra(graph, startNode, endNode):
-    explored = []
+    explored = pq.Stack()
     queue = pq.PriorityQueue()
     startNode = Node(startNode)
     startNode.cost=0
@@ -22,7 +22,7 @@ def dijkstra(graph, startNode, endNode):
         #Test code
         # pop minimum cost from queue as current node
         currentNode = queue.removeMax()
-        explored.append(currentNode)
+        explored.push(currentNode)
         # if current node is goal node return path and cost
         if currentNode.label == endNode:
             #shows every node visited
@@ -33,13 +33,15 @@ def dijkstra(graph, startNode, endNode):
                 print("node:",explored[i].label, "prev:",explored[i].prev ,"Cost:",explored[i].cost)
             """
             path=[]
-            previousPath = explored[-1].prev
-            path.append(explored[-1])
+            path.append(explored.pop())
+            previousPath = path[0].prev
+            cost = path[0].cost
             #Iterate through explored nodes and piece together the path from  the goal node to start node
-            for i in range(len(explored)-1,-1,-1):
-                if explored[i].label == previousPath:
-                    path.append(explored[i])
-                    previousPath = explored[i].prev
+            for i in range(len(explored)):
+                currentPath = explored.pop()
+                if currentPath.label == previousPath:
+                    path.append(currentPath)
+                    previousPath = currentPath.prev
             #print path
             """
             print()
@@ -48,7 +50,7 @@ def dijkstra(graph, startNode, endNode):
                 print("node:",path[j].label, "prev:",path[j].prev ,"Cost:",path[j].cost)
             """
 
-            return explored[-1].cost, path
+            return cost, path
         #print()
         #print("current node:",currentNode.label, "prev:",currentNode.prev ,"Cost:",currentNode.cost)
         # check if node connects to anything

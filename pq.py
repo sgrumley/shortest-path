@@ -58,7 +58,30 @@ class PriorityQueue(object):
         while i > 0:
             self.downHeap(i,person)
             i = i - 1
+
+
+class Stack(object):
+    def __init__(self):
+        self.items = []
+
+    def __len__(self):
+        return len(self.items)
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        return self.items.pop()
+
 """
+s = Stack()
+s.push("Hello")
+s.push("Hellsfo")
+s.push("rgs")
+print(s.pop())
+print(s.pop())
+
+
 p = PriorityQueue()
 test = d.Node('C')
 test.cost = 2

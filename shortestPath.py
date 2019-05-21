@@ -1,5 +1,5 @@
 import Dijkstra as algo
-
+import algorithm
 
 def readFile(fileName):
     file = open(fileName, "r")
@@ -15,7 +15,7 @@ def readFile(fileName):
             temp = line.split()
             s = temp[0]
             f = temp[1]
-            k = temp[2]
+            k = int(temp[2])
         else:
             temp = line.split()
             if temp[0] in graph:
@@ -46,12 +46,13 @@ print("Find the shortest path from", startNode, "to", endNode)
 print(graph)
 """
 cost, path = algo.dijkstra(graph,startNode,endNode)
-
+path.reverse()
 #print(first path found)
 for i in range(len(path)):
     print(path[i].label)
 
-
+print("-----------------------------------------------------------------------")
+algorithm.run(path, graph, startNode, endNode, k)
 
 """
 // Initialize the set to store the potential kth shortest path.
