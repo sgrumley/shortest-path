@@ -2,7 +2,9 @@ import Dijkstra as algo
 import copy
 import pq
 import NodeClass
-
+# change dikstras to be in this file
+# where root path is made turn it into a path object with Cost
+# reverse dikstra result
 def run(path, graph, startNode, endNode, k):
     A=[]
     B = pq.PriorityQueue()
@@ -10,19 +12,21 @@ def run(path, graph, startNode, endNode, k):
     initPath = NodeClass.Path(path, tempCost )
     A.append(initPath)
 
+    # for k-1 shortest paths
     for i in range(1,k):
         print(i, "shortest path")
-
-        lengthA = len(A[i -1]) -1
-        for j in range(lengthA ):
+        # iterate through previous shortest path nodes
+        for j in range(len(A[i -1]) -1):
             print()
             print()
+            # spur node = the current node that will be removed from the path
             spurNode = A[i-1].path[j]
+            #create root path up to spur node
             rootPath = []
             for x in range(j):
                 rootPath.append(A[i-1].path[x])
 
-            #remove edge from spur node
+            #remove edge from spur node to next node
             localGraph = copy.deepcopy(graph)
             if spurNode.label != endNode:
                 for y in range(len(localGraph[spurNode.label][0])):
@@ -49,6 +53,7 @@ def run(path, graph, startNode, endNode, k):
             elif len(spurPath) == 0:
                 totalCost = rootPath[-1].cost
             else:
+                print(len(rootPath))
                 print("bCost", bCost, "rootPath", rootPath[-1].cost, "spur path", spurPath[-1].cost)
                 totalCost =  rootPath[-1].cost + spurPath[-1].cost
 
@@ -69,8 +74,6 @@ def run(path, graph, startNode, endNode, k):
                 print("inserted")
 
 
-
-            # add shortest B to A
         dupe = True
         #check if B is already in A
         while (dupe == True):
