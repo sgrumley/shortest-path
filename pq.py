@@ -59,6 +59,12 @@ class PriorityQueue(object):
             self.downHeap(i,person)
             i = i - 1
 
+    def contains(self, item):
+        for i in range(1, len(self.items)):
+            if self.items[i].pathLabel == item.pathLabel:
+                return True
+        return False
+
 
 class Stack(object):
     def __init__(self):
