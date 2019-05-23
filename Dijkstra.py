@@ -33,6 +33,7 @@ def dijkstra(graph, startNode, endNode):
                 print("node:",explored[i].label, "prev:",explored[i].prev ,"Cost:",explored[i].cost)
             """
             path=[]
+            print("close to end")
             path.append(explored.pop())
             previousPath = path[0].prev
             cost = path[0].cost
