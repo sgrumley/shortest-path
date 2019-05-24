@@ -6,6 +6,7 @@ import NodeClass
 # reverse dikstra result
 def run(graph, startNode, endNode, k):
     cost, path = algo.dijkstra(graph,startNode,endNode)
+    return cost, path
     print("cost: ", path[0].cost)
     path.reverse()
     A= []

@@ -37,6 +37,7 @@ def readFile(fileName):
 
 
 fileName = "finalInput.txt"
+#fileName = "input.txt"
 
 numVert, numEdge, graph, startNode, endNode, k =  readFile(fileName)
 print(startNode,endNode)
@@ -55,5 +56,8 @@ for i in range(len(path)):
 print("-----------------------------------------------------------------------")
 final = algorithm.run( graph, startNode, endNode, k)
 print("-----------------------------------------------------------------------")
+"""
 for i in range(len(final)):
-    print(final[i].printPath())
+    final[i].printPath()
+"""
+
