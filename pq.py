@@ -1,8 +1,10 @@
 import NodeClass as d
 
+
 class PriorityQueue(object):
     def __init__(self):
         self.items = [0]
+        self.available_items = set()
 
     def __len__(self):
         return len(self.items) - 1
@@ -17,6 +19,7 @@ class PriorityQueue(object):
 
     def insert(self, item):
         self.items.append(item)
+        self.available_items.add(item.label)
         self.upHeap()
 
 
@@ -39,6 +42,7 @@ class PriorityQueue(object):
         if len(self) == 0:
             return (0,0)
         min = self.items[1]
+        self.available_items.remove(min.label)
         self.items[1] = self.items[len(self)]
         self.items.pop()
         self.downHeap(1)
@@ -48,9 +52,10 @@ class PriorityQueue(object):
         return self.items[1]
 
     def lookUp(self, value):
-        for i in range(1,len(self.items)):
-            if self.items[i].label == value:
-                return i
+        if value in self.available_items:
+            for i in range(1,len(self.items)):
+                if self.items[i].label == value:
+                    return i
         return False
 
     def heapify(self, person):
@@ -61,7 +66,7 @@ class PriorityQueue(object):
 
     def contains(self, item):
         for i in range(1, len(self.items)):
-            if self.items[i].pathLabel == item.pathLabel:
+            if self.items[i].label == item.label:
                 return True
         return False
 

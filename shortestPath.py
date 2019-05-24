@@ -56,8 +56,8 @@ for i in range(len(path)):
 print("-----------------------------------------------------------------------")
 final = algorithm.run( graph, startNode, endNode, k)
 print("-----------------------------------------------------------------------")
-"""
+print(len(final))
 for i in range(len(final)):
-    final[i].printPath()
-"""
+    #print(final[i].label)
 
+    final[i].printPath()

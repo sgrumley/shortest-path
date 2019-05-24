@@ -1,4 +1,4 @@
-
+# change pathLabel to label
 class Node(object):
     def __init__(self, label):
         self.label = label
@@ -17,7 +17,7 @@ class Path(object):
         temp = []
         for i in range(len(self.path)):
             temp.append(self.path[i].label)
-        self.pathLabel = ''.join(temp)
+        self.label = ''.join(temp)
 
     def __len__(self):
         return len(self.path)

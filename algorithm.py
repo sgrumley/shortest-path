@@ -2,11 +2,14 @@ import Dijkstra as algo
 import copy
 import pq
 import NodeClass
+import time
 # where root path is made turn it into a path object with Cost
 # reverse dikstra result
 def run(graph, startNode, endNode, k):
+    start = time.time()
     cost, path = algo.dijkstra(graph,startNode,endNode)
-    return cost, path
+    print(time.time() - start)
+    #return cost, path
     print("cost: ", path[0].cost)
     path.reverse()
     A= []
@@ -99,12 +102,12 @@ def run(graph, startNode, endNode, k):
             dupe = False
             tempForA = B.removeMax()
             for a in range(len(A)):
-                if  A[a].pathLabel == tempForA.pathLabel:
+                if  A[a].label == tempForA.label:
                     dupe = True
                     #print("comp",pathFinal.pathLabel, A[a].pathLabel)
             if dupe == False:
                 A.append(tempForA)
-                print("A recieved", tempForA.pathLabel)
+                print("A recieved", tempForA.label)
                 print("cost", tempForA.cost)
 
 

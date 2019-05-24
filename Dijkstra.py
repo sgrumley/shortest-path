@@ -34,16 +34,16 @@ def dijkstra(graph, startNode, endNode):
                 if currentPath.label == previousPath:
                     path.append(currentPath)
                     previousPath = currentPath.prev
-            print("Dijkstra ended w/ result")
+            #print("Dijkstra ended w/ result")
             return cost, path
         #print()
         #print("current node:",currentNode.label, "prev:",currentNode.prev ,"Cost:",currentNode.cost)
         # check if node connects to anything
         try:
             length = len(graph[currentNode.label][0])
-            print("length",length)
-            print("lookup lenght",len(queue))
-            print()
+            #print("length",length)
+            #print("lookup lenght",len(queue))
+            #print()
         except:
             break
         # iterate through all children nodes
@@ -52,26 +52,26 @@ def dijkstra(graph, startNode, endNode):
             ind = queue.lookUp(graph[currentNode.label][0][i])
             # If node is in queue and the current path is shorter -> update
             if ind != False:
-                print("updated count", updated)
+                #print("updated count", updated)
                 updated +=1
                 newWeight = currentNode.cost + graph[currentNode.label][1][i]
                 previousWeight = queue.items[ind].cost
                 # if the current cost is smaller than the cost of the node, update it
                 if newWeight < previousWeight:
-                    print("actual updates:", actUp)
+                    #print("actual updates:", actUp)
                     actUp += 1
                     queue.items[ind].cost = newWeight
                     queue.items[ind].prev = currentNode.label
             # else if the node isnt in the queue yet, add it in
             else:
-                print("count",count)
-                print("node",graph[currentNode.label][0][i])
+                #print("count",count)
+                #print("node",graph[currentNode.label][0][i])
                 count+=1
                 newNode = Node(graph[currentNode.label][0][i])
                 newNode.cost = currentNode.cost + graph[currentNode.label][1][i]
                 newNode.prev = currentNode.label
                 queue.insert(newNode)
-    print("Dijkstra ended w/o result")
+    #print("Dijkstra ended w/o result")
     return "not found", None
 #create a data structure that refelects previous node and cost
 # change pq to reflect assignment 2
