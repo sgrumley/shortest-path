@@ -1,36 +1,35 @@
-import NodeClass as d
-
-
 class PriorityQueue(object):
+
     def __init__(self):
         self.items = [0]
         self.available_items = set()
 
+    # overide len function to not include 0
     def __len__(self):
         return len(self.items) - 1
 
-    #parent node = node position / 2
-    def upHeap(self):
+    def up_heap(self):
         i = len(self)
         while i // 2 > 0:
             if self.items[i].cost < self.items[i // 2].cost:
                 self.items[i // 2], self.items[i] = self.items[i], self.items[i // 2]
             i = i // 2
 
+    # insert item to last position then upheap to satisfy heap rules
     def insert(self, item):
         self.items.append(item)
         self.available_items.add(item.label)
-        self.upHeap()
+        self.up_heap()
 
-
-    def downHeap(self, i):
+    # while node has children find the biggest and compare it
+    def down_heap(self, i):
         while i * 2 <= len(self):
             mc = self.min_child(i)
             if self.items[i].cost > self.items[mc].cost:
                 self.items[i], self.items[mc] = self.items[mc], self.items[i]
             i = mc
 
-    #can this be simplified to the last val in array
+    # determine which child is bigger and return its index
     def min_child(self, i ):
         if i * 2 + 1 > len(self):
             return i * 2
@@ -38,76 +37,68 @@ class PriorityQueue(object):
             return i * 2
         return i * 2 + 1
 
-    def removeMax(self):
+    # delete function that swaps max value with last value then downheaps the swapped value to satisfy heap rules
+    def remove_min(self):
         if len(self) == 0:
-            return (0,0)
+            return None
         min = self.items[1]
         self.available_items.remove(min.label)
         self.items[1] = self.items[len(self)]
         self.items.pop()
-        self.downHeap(1)
+        self.down_heap(1)
         return min
 
-    def peek(self):
-        return self.items[1]
-
-    def lookUp(self, value):
+#    def peek(self):
+#        return self.items[1]
+    # Function that uses set to verify the value is in the queue and returns index if yes
+    def look_up(self, value):
         if value in self.available_items:
             for i in range(1,len(self.items)):
                 if self.items[i].label == value:
                     return i
         return False
 
-    def heapify(self, person):
-        i = len(self.items)
-        while i > 0:
-            self.downHeap(i,person)
-            i = i - 1
+#    def heapify(self, person):
+#        i = len(self.items)
+#        while i > 0:
+#            self.down_heap(i,person)
+#            i = i - 1
 
-    def contains(self, item):
-        for i in range(1, len(self.items)):
-            if self.items[i].label == item.label:
-                return True
-        return False
+#    def contains(self, item):
+#        for i in range(1, len(self.items)):
+#            if self.items[i].label == item.label:
+#                return True
+#        return False
 
 
 class Stack(object):
     def __init__(self):
         self.items = []
+        self.s = set()
+
+    def print_stack(self):
+        for i in range(len(self.items)):
+            print(self.items[i].label, end = " ")
+        print()
+        for i in range(len(self.items)):
+            print(self.items[i].cost, end = " ")
+        print()
+        for i in range(len(self.items)):
+            print(self.items[i].prev, end = " ")
+        print()
 
     def __len__(self):
         return len(self.items)
 
     def push(self, item):
         self.items.append(item)
+        self.s.add(item.label)
 
-    def pop(self):
-        return self.items.pop()
+#    def pop(self):
+#        return self.items.pop()
 
-"""
-s = Stack()
-s.push("Hello")
-s.push("Hellsfo")
-s.push("rgs")
-print(s.pop())
-print(s.pop())
-
-
-p = PriorityQueue()
-test = d.Node('C')
-test.cost = 2
-p.insert(test)
-test = d.Node('D')
-test.cost = 3
-p.insert(test)
-test = d.Node('E')
-test.cost = 4
-p.insert(test)
-test = d.Node('F')
-test.cost = 5
-p.insert(test)
-
-for i in range(4):
-    print(p.removeMax().printNode())
-    print()
-"""
+    def check_up(self, val):
+        if val in self.s:
+            return True
+        else:
+            return False

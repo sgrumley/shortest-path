@@ -1,17 +1,18 @@
 import pq
-
+import NodeClass
+"""
 class Node():
     def __init__(self, label):
         self.label = label
         self.cost = float('inf')
         self.prev = None
-
+"""
 
 def dijkstra(graph, startNode, endNode):
     print("Dijkstra started")
     explored = pq.Stack()
     queue = pq.PriorityQueue()
-    startNode = Node(startNode)
+    startNode = NodeClass.Node(startNode)
     startNode.cost=0
     queue.insert(startNode)
     updated=0
@@ -29,13 +30,19 @@ def dijkstra(graph, startNode, endNode):
             previousPath = path[0].prev
             cost = path[0].cost
             #Iterate through explored nodes and piece together the path from  the goal node to start node
-            for i in range(len(explored)):
+            for x in range(len(explored) -1, -1, -1):
                 currentPath = explored.pop()
                 if currentPath.label == previousPath:
                     path.append(currentPath)
                     previousPath = currentPath.prev
             #print("Dijkstra ended w/ result")
-            return cost, path
+            path.reverse()
+            result = NodeClass.Path(path, cost)
+            #append result
+            # remove weight to end node
+
+
+            return result
         #print()
         #print("current node:",currentNode.label, "prev:",currentNode.prev ,"Cost:",currentNode.cost)
         # check if node connects to anything
@@ -67,11 +74,11 @@ def dijkstra(graph, startNode, endNode):
                 #print("count",count)
                 #print("node",graph[currentNode.label][0][i])
                 count+=1
-                newNode = Node(graph[currentNode.label][0][i])
+                newNode = NodeClass.Node(graph[currentNode.label][0][i])
                 newNode.cost = currentNode.cost + graph[currentNode.label][1][i]
                 newNode.prev = currentNode.label
                 queue.insert(newNode)
     #print("Dijkstra ended w/o result")
-    return "not found", None
+    return None
 #create a data structure that refelects previous node and cost
 # change pq to reflect assignment 2

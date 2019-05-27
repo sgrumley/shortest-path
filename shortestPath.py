@@ -1,5 +1,6 @@
 import Dijkstra as algo
 import algorithm
+import algo
 
 def readFile(fileName):
     file = open(fileName, "r")
@@ -54,7 +55,9 @@ for i in range(len(path)):
     print(path[i].label)
 """
 print("-----------------------------------------------------------------------")
-final = algorithm.run( graph, startNode, endNode, k)
+#final = algorithm.run( graph, startNode, endNode, k)
+final = algo.run( graph, startNode, endNode, k)
+#exit()
 print("-----------------------------------------------------------------------")
 print(len(final))
 for i in range(len(final)):

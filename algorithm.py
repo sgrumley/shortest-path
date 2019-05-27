@@ -12,6 +12,7 @@ def run(graph, startNode, endNode, k):
     #return cost, path
     print("cost: ", path[0].cost)
     path.reverse()
+    #return 0
     A= []
     B = pq.PriorityQueue()
     initPath = NodeClass.Path(path, cost )
