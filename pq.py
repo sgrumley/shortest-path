@@ -48,8 +48,6 @@ class PriorityQueue(object):
         self.down_heap(1)
         return min
 
-#    def peek(self):
-#        return self.items[1]
     # Function that uses set to verify the value is in the queue and returns index if yes
     def look_up(self, value):
         if value in self.available_items:
@@ -57,19 +55,6 @@ class PriorityQueue(object):
                 if self.items[i].label == value:
                     return i
         return False
-
-#    def heapify(self, person):
-#        i = len(self.items)
-#        while i > 0:
-#            self.down_heap(i,person)
-#            i = i - 1
-
-#    def contains(self, item):
-#        for i in range(1, len(self.items)):
-#            if self.items[i].label == item.label:
-#                return True
-#        return False
-
 
 class Stack(object):
     def __init__(self):
@@ -93,9 +78,6 @@ class Stack(object):
     def push(self, item):
         self.items.append(item)
         self.s.add(item.label)
-
-#    def pop(self):
-#        return self.items.pop()
 
     def check_up(self, val):
         if val in self.s:

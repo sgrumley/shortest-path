@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8338bb3-fb6c-462a-9e74-99774f382f64" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Dijkstra.py" beforeDir="false" afterPath="$PROJECT_DIR$/Dijkstra.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NodeClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/NodeClass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pq.py" beforeDir="false" afterPath="$PROJECT_DIR$/pq.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shortestPath.py" beforeDir="false" afterPath="$PROJECT_DIR$/shortestPath.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Algorithm.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Algorithm.docx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,8 +53,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/version2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-612">
-              <caret line="54" column="40" lean-forward="true" selection-start-line="54" selection-start-column="40" selection-end-line="54" selection-end-column="40" />
+            <state relative-caret-position="-595">
+              <caret line="55" column="40" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="40" />
               <folding>
                 <element signature="e#1#17#0" expanded="true" />
               </folding>
@@ -70,7 +66,7 @@
         <entry file="file://$PROJECT_DIR$/DijkstraButMore.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
-              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -81,9 +77,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pq.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1098">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-            </state>
+            <state relative-caret-position="-10" />
           </provider>
         </entry>
       </file>
@@ -113,7 +107,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="1457" />
     <option name="y" value="-15" />
     <option name="width" value="1936" />
@@ -252,8 +246,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/version2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-612">
-          <caret line="54" column="40" lean-forward="true" selection-start-line="54" selection-start-column="40" selection-end-line="54" selection-end-column="40" />
+        <state relative-caret-position="-595">
+          <caret line="55" column="40" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="40" />
           <folding>
             <element signature="e#1#17#0" expanded="true" />
           </folding>
@@ -263,7 +257,7 @@
     <entry file="file://$PROJECT_DIR$/DijkstraButMore.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
@@ -272,9 +266,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pq.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1098">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-        </state>
+        <state relative-caret-position="-10" />
       </provider>
     </entry>
   </component>
