@@ -1,4 +1,5 @@
-# change pathLabel to label
+# NodeClass.py implements objects needed
+# Node contains all the data needed for a single Node in a graph
 class Node(object):
     def __init__(self, label):
         self.label = label
@@ -8,6 +9,7 @@ class Node(object):
         self.replacedByCost = None
         self.replacedDif = None
 
+    # Print Node variables
     def printNode(self):
         print("label:", self.label)
         print("cost:", self.cost)
@@ -17,13 +19,14 @@ class Node(object):
             print("replaced by:", self.replacedBy)
             print("Difference in change", self.replacedDif)
 
+    # Record any times a path is changed that included this node
     def replaced(self, label, weight):
         self.replacedByCost = weight
         self.replacedBy = label
         self.replacedDif = self.cost - self.replacedByCost
 
 
-
+# Path contains an ordered list of nodes representing a path in the graph
 class Path(object):
     def __init__(self, path, cost):
         self.path = path
@@ -33,14 +36,16 @@ class Path(object):
             temp.append(self.path[i].label)
         self.label = ' '.join(temp)
 
+    # Overwite len function to reflect length of the path
     def __len__(self):
         return len(self.path)
 
+    # Display path
     def printPath(self):
         print("Cost: ", self.cost)
         print("Path: ", self.label)
 
-
+    # Function to merge 2 paths
     def merge(self, extension):
         totalPath = self.path
         for a in range(len(extension.path)):
