@@ -1,3 +1,4 @@
+# pq.py implements required Data types used by the program
 class PriorityQueue(object):
 
     def __init__(self):
@@ -8,6 +9,7 @@ class PriorityQueue(object):
     def __len__(self):
         return len(self.items) - 1
 
+    # While the node has parentsfind and compare
     def up_heap(self):
         i = len(self)
         while i // 2 > 0:
@@ -57,10 +59,12 @@ class PriorityQueue(object):
         return False
 
 class Stack(object):
+
     def __init__(self):
         self.items = []
         self.s = set()
 
+    # Print stack elements
     def print_stack(self):
         for i in range(len(self.items)):
             print(self.items[i].label, end = " ")
@@ -72,16 +76,20 @@ class Stack(object):
             print(self.items[i].prev, end = " ")
         print()
 
+    # Overide the length function for stack objects
     def __len__(self):
         return len(self.items)
 
+    # Append element
     def push(self, item):
         self.items.append(item)
         self.s.add(item.label)
 
+    # Remove last element
     def pop(self):
         return self.items.pop()
 
+    # Check if element exists
     def check_up(self, val):
         if val in self.s:
             return True
