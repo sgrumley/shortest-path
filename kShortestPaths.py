@@ -1,7 +1,9 @@
 import NodeClass
 import time
 import pickle
-import DijkstraButMore as dbm
+import Dijkstra as dbm
+import sys
+import algo
 
 
 # read in file to dictionary and variables
@@ -78,56 +80,19 @@ def sort(data):
         return data
 
 
-file_name = "finalInput.txt"
-#file_name = "input.txt"
-#file_name = "inputTest.txt"
+file_name = sys.argv[1]
 # read file in
 num_vert, num_edge, graph, startNode, endNode, k, end_node_parents = read_file(file_name)
 print(startNode, endNode)
-start = time.time()
+startBegin = time.time()
 # Run Dijkstra algorithm to find the shortest path
 result, explored, changes = dbm.dijkstra(graph, startNode, endNode)
 
-
-file = open('test.pkl','wb')
-
-pickle.dump(result, file)
-pickle.dump(explored, file)
-pickle.dump(changes, file)
-
-file.close()
-exit()
-"""
-file = open('test.pkl', 'rb')
-result = pickle.load(file)
-explored = pickle.load(file)
-changes = pickle.load(file)
-file.close()
-"""
-print("Search time",time.time() - start)
+print("Search time",time.time() - startBegin)
 # sort changes (list of all updates dijkstra made) from smallest change to largest
 changes = sort(changes)
 # define kPaths and add the first path found from Dijkstra
 kPaths = [result]
-
-
-"""
-print()
-print("result of 1st search")
-result.printPath()
-
-
-print()
-print("nodes explored")
-explored.printStack()
-print()
-print()
-print("Changes in nodes costs")
-for i in range(len(changes)):
-    changes[i].printNode()
-    print()
-
-"""
 
 
 """ Check if goal adjacent nodes have been explored """
@@ -156,9 +121,13 @@ for i in range(len(explored)):
 
 """ Find minimum alternative paths """
 # iterate through changes from smallest to largest and see if and of the changed nodes are in the shortest path
+selected = False
 for i in range(len(changes)):
     # Could potentially become a set
     for j in range(len(result)):
+        if selected == True:
+            selected = False
+            break
         # if we have k paths stop loops
         if len(kPaths) >= k:
             break
@@ -170,6 +139,7 @@ for i in range(len(changes)):
                 # Find the position in explored list and revert the change
                 for x in range(len(explored.items)):
                     if explored.items[x].label == changes[i].label:
+                        print(explored.items[x].label)
                         start = time.time()
                         explored.items[x].cost =  changes[i].cost
                         explored.items[x].prev =  changes[i].prev
@@ -182,9 +152,16 @@ for i in range(len(changes)):
                         # Check if path already exists
                         kPaths.append(finalPath)
                         print("k", len(kPaths))
-                        print("Search time", time.time() - start)
+                        print("Search time", time.time() - startBegin)
+                        selected = True
                         break
-
+print()
 print("K Paths")
 for i in range(len(kPaths)):
-    kPaths[i].printPath()
+    print(kPaths[i].cost)
+
+if len(kPaths) < k:
+    final = algo.run(graph, startNode, endNode, k)
+
+    for i in range(len(final)):
+        final[i].printPath()

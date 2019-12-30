@@ -79,6 +79,9 @@ class Stack(object):
         self.items.append(item)
         self.s.add(item.label)
 
+    def pop(self):
+        return self.items.pop()
+
     def check_up(self, val):
         if val in self.s:
             return True
